@@ -1,0 +1,44 @@
+type Query {
+		groups: [Group!]!
+		group(id: ID!): Group!
+		users: [User!]!
+		user(id: ID!): User
+	}
+
+	type Mutation {
+		createGroup(input: CreateGroupInput!): Group!
+		updateGroup(id: ID!, input: UpdateGroupInput!): Group!
+		removeGroup(id: ID!): Group!
+
+		createUser(input: CreateUserInput!): User!
+		updateUser(id: ID!, input: UpdateUserInput!): User!
+		removeUser(id: ID!): User!
+	}
+input CreateGroupInput {
+  id: ID!
+	name: String!
+}
+input UpdateGroupInput {
+  name: String
+}
+input CreateUserInput {
+  id: ID!
+	first_name: String!
+	last_name: String!
+}
+input UpdateUserInput {
+  first_name: String
+	last_name: String
+}
+	type User {
+		id: ID!
+		first_name: String
+		last_name: String
+		groups: [Group!]!
+	}
+
+	type Group {
+		id: ID!
+		name: String
+		users: [User!]!
+	}
